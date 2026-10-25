@@ -18,3 +18,11 @@ Jira's automatic GitHub development-panel linking is separate account configurat
 ## Browser acceptance executed
 
 Student demo sign-in, complaint submission, admin assignment to Riya Shah, staff start-work, comment submission, resolution and five-event activity history all passed in the local Worker preview.
+
+## Verified GitHub CI evidence
+
+PR #1: https://github.com/jeenilm8/campus-helpdesk/pull/1 - merged after successful CI.
+
+Run #1: https://github.com/jeenilm8/campus-helpdesk/actions/runs/40197845412 - tests, TypeScript, production build, fresh SQL migrations and build-artifact upload all succeeded.
+
+The continuous-delivery job publishes a verified private release on main. A separate optional Cloudflare deployment still requires owner account configuration.

@@ -72,7 +72,7 @@ npm start               # Preview the built app locally
 
 ## Important boundaries
 
-The private live deployment is separate from GitHub Actions deployment. The included GitHub pipeline becomes active after the source is uploaded to a GitHub repository. Its deployment job additionally needs the Cloudflare secrets and repository variables described in `docs/GITHUB_CICD.md`.
+GitHub Actions automatically verifies changes and delivers a private release after a successful main-branch build. The private live deployment is separate from GitHub Actions deployment. The included GitHub pipeline becomes active after the source is uploaded to a GitHub repository. Its deployment job additionally needs the Cloudflare secrets and repository variables described in `docs/GITHUB_CICD.md`.
 
 Jira stories are planned review/acceptance work, not a fabricated history of completed team ceremonies. Your team should perform and record real sprint planning, reviews, retrospectives and code reviews. No payments, email delivery, file attachments, password reset or production staff-management UI are included.
 

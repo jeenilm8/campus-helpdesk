@@ -46,7 +46,11 @@ On a pull request to `main`, a push to `main`, or a manual workflow run:
 
 Failed tests or builds prevent deployment. PR runs never deploy.
 
-## How the optional CD job works
+## Continuous delivery without extra hosting credentials
+
+On a verified main-branch push, the `deliver` job downloads the checked build, packages it with migrations and documentation, and creates a release in the private GitHub repository. This is an actual continuous-delivery step using the built-in GitHub Actions token. A release packages software; it does not apply schema changes to the running live site.
+
+## How the optional deployment job works
 
 The deployment job needs the `verify` job to succeed. It runs only on `main` and only when repository variable `ENABLE_DEPLOYMENT` is exactly `true`.
 
