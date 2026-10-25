@@ -1,0 +1,71 @@
+name: Campus Helpdesk CI-CD
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: helpdesk-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    name: Test, typecheck and build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - name: Install locked dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Test authentication, permissions and workflows
+        run: npm test
+      - name: Check TypeScript
+        run: npm run typecheck
+      - name: Build the application
+        run: npm run build
+      - name: Verify fresh SQL migrations
+        run: node scripts/db-local.mjs .wrangler/ci-state
+      - name: Upload verified build
+        uses: actions/upload-artifact@v4
+        with:
+          name: campus-helpdesk-build
+          path: dist/
+          retention-days: 7
+  deploy:
+    name: Deploy verified main branch
+    needs: verify
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request' && vars.ENABLE_DEPLOYMENT == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    env:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+      CLOUDFLARE_DATABASE_ID: ${{ vars.CLOUDFLARE_DATABASE_ID }}
+      CLOUDFLARE_WORKER_NAME: ${{ vars.CLOUDFLARE_WORKER_NAME }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 11.25.0
+      - run: pnpm install --frozen-lockfile
+      - uses: actions/download-artifact@v4
+        with:
+          name: campus-helpdesk-build
+          path: dist
+      - run: node scripts/configure-deployment.mjs
+      - name: Apply pending production migrations
+        run: pnpm exec wrangler d1 migrations apply DB --remote --config .sites-runtime/wrangler.deploy.json
+      - name: Deploy the checked build
+        run: pnpm exec wrangler deploy --config .sites-runtime/wrangler.deploy.json

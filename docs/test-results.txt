@@ -1,0 +1,33 @@
+
+> campus-helpdesk@1.0.0 test
+> node --test tests/helpdesk.test.mjs
+
+✔ anonymous users cannot read or mutate complaints (21.810087ms)
+✔ demo seed is idempotent and persists eight sample complaints (31.930304ms)
+✔ passwords use independent salts and verify correctly (142.647619ms)
+✔ registration ignores client-supplied admin role and hides password hashes (102.785844ms)
+✔ invalid and duplicate registrations are rejected (92.896273ms)
+✔ student lists only own complaints and cannot read or comment on another student report (79.94928ms)
+✔ staff lists only assigned work and cannot see unassigned or other-staff complaints (38.3866ms)
+✔ administrator can inspect all complaints and staff directory without password leaks (37.623236ms)
+✔ complaint submission validates fields and creates a matching activity event (59.733575ms)
+✔ non-students cannot submit complaints (45.935645ms)
+✔ only administrators can assign staff and assignee must be a staff member (46.038073ms)
+✔ complete workflow: report, assign, start, comment, resolve and reopen (53.977262ms)
+✔ invalid transitions and student status changes are denied (58.192199ms)
+✔ stale revisions cannot overwrite a newer update or append a false history event (61.670228ms)
+✔ blank comments are rejected and HTML is retained only as inert text data (92.024816ms)
+✔ logout invalidates sessions and expired sessions are rejected (89.633242ms)
+✔ session database stores token digests rather than raw session tokens (57.748512ms)
+✔ cross-origin mutations, invalid JSON and oversized payloads are rejected (58.174156ms)
+✔ parameterized queries resist login injection attempts (64.379212ms)
+✔ repeated invalid passwords are rate-limited (269.712216ms)
+✔ correct password login works with normalized email (65.709313ms)
+ℹ tests 21
+ℹ suites 0
+ℹ pass 21
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1830.409079

@@ -1,0 +1,12 @@
+Existing Jira key,Summary,Planned sprint,Story points,Epic,Label
+SCRUM-6,Secure student registration and role-based login,1,5,SCRUM-5,campus-helpdesk
+SCRUM-7,SQL schema and version-control foundation,1,3,SCRUM-5,campus-helpdesk
+SCRUM-8,Submit a campus complaint,2,5,SCRUM-5,campus-helpdesk
+SCRUM-9,Private complaint tracking and access control,2,5,SCRUM-5,campus-helpdesk
+SCRUM-10,"Search, filter and export complaints",2,3,SCRUM-5,campus-helpdesk
+SCRUM-11,Assign complaints to campus staff,3,5,SCRUM-5,campus-helpdesk
+SCRUM-12,Resolve and reopen complaints,3,5,SCRUM-5,campus-helpdesk
+SCRUM-13,Comments and activity timeline,3,3,SCRUM-5,campus-helpdesk
+SCRUM-14,Automated tests and permission verification,4,5,SCRUM-5,campus-helpdesk
+SCRUM-15,GitHub Actions CI and gated deployment configuration,4,5,SCRUM-5,campus-helpdesk
+SCRUM-16,"Dashboards, presentation and course submission guide",4,3,SCRUM-5,campus-helpdesk
