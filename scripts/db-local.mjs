@@ -1,0 +1,13 @@
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { spawnSync } from 'node:child_process';
+import './sites-env.mjs';
+if(!existsSync('dist/server/wrangler.json'))throw new Error('Run npm run build before applying database migrations.');
+const config=JSON.parse(readFileSync('dist/server/wrangler.json','utf8'));
+const database=config.d1_databases?.find(d=>d.binding==='DB');
+if(!database)throw new Error('DB binding is missing from the build.');
+mkdirSync('.sites-runtime',{recursive:true});
+writeFileSync('.sites-runtime/wrangler.local.json',JSON.stringify({name:'campus-helpdesk-local',compatibility_date:'2026-05-15',d1_databases:[{...database,migrations_dir:resolve('drizzle')}]},null,2));
+const state=process.argv[2]||'.wrangler/state';
+const r=spawnSync(process.execPath,['node_modules/wrangler/bin/wrangler.js','d1','migrations','apply','DB','--local','--config','.sites-runtime/wrangler.local.json','--persist-to',state],{stdio:'inherit',env:{...process.env,CI:'true'}});
+if(r.error)throw r.error;process.exit(r.status??1);

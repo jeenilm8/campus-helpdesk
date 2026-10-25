@@ -1,0 +1,113 @@
+{
+  "epic": "SCRUM-5",
+  "url": "https://jeenilmakwana.atlassian.net/browse/SCRUM-5",
+  "board": "https://jeenilmakwana.atlassian.net/jira/software/projects/SCRUM/boards/1/backlog",
+  "sprints": [
+    {
+      "id": 3,
+      "name": "CH Sprint 1 Foundation",
+      "sprint": 1
+    },
+    {
+      "sprint": 2,
+      "id": 4,
+      "name": "CH Sprint 2 Report and Track",
+      "state": "future",
+      "goal": "Review student submission, private access, search and filters.",
+      "originBoardId": 1
+    },
+    {
+      "sprint": 3,
+      "id": 5,
+      "name": "CH Sprint 3 Assign and Resolve",
+      "state": "future",
+      "goal": "Review staff assignment, progress updates, comments and audit history.",
+      "originBoardId": 1
+    },
+    {
+      "sprint": 4,
+      "id": 6,
+      "name": "CH Sprint 4 Test and Deliver",
+      "state": "future",
+      "goal": "Run acceptance tests, configure GitHub CI/CD and present the final product.",
+      "originBoardId": 1
+    }
+  ],
+  "stories": [
+    {
+      "sprint": 1,
+      "points": 5,
+      "key": "SCRUM-6"
+    },
+    {
+      "sprint": 1,
+      "points": 3,
+      "title": "SQL schema and version-control foundation",
+      "id": "10006",
+      "key": "SCRUM-7"
+    },
+    {
+      "sprint": 2,
+      "points": 5,
+      "title": "Submit a campus complaint",
+      "id": "10007",
+      "key": "SCRUM-8"
+    },
+    {
+      "sprint": 2,
+      "points": 5,
+      "title": "Private complaint tracking and access control",
+      "id": "10008",
+      "key": "SCRUM-9"
+    },
+    {
+      "sprint": 2,
+      "points": 3,
+      "title": "Search, filter and export complaints",
+      "id": "10009",
+      "key": "SCRUM-10"
+    },
+    {
+      "sprint": 3,
+      "points": 5,
+      "title": "Assign complaints to campus staff",
+      "id": "10010",
+      "key": "SCRUM-11"
+    },
+    {
+      "sprint": 3,
+      "points": 5,
+      "title": "Resolve and reopen complaints",
+      "id": "10011",
+      "key": "SCRUM-12"
+    },
+    {
+      "sprint": 3,
+      "points": 3,
+      "title": "Comments and activity timeline",
+      "id": "10012",
+      "key": "SCRUM-13"
+    },
+    {
+      "sprint": 4,
+      "points": 5,
+      "title": "Automated tests and permission verification",
+      "id": "10013",
+      "key": "SCRUM-14"
+    },
+    {
+      "sprint": 4,
+      "points": 5,
+      "title": "GitHub Actions CI and gated deployment configuration",
+      "id": "10014",
+      "key": "SCRUM-15"
+    },
+    {
+      "sprint": 4,
+      "points": 3,
+      "title": "Dashboards, presentation and course submission guide",
+      "id": "10015",
+      "key": "SCRUM-16"
+    }
+  ]
+}
