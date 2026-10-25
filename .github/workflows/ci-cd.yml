@@ -39,6 +39,32 @@ jobs:
           name: campus-helpdesk-build
           path: dist/
           retention-days: 7
+          include-hidden-files: true
+  deliver:
+    name: Deliver verified release
+    needs: verify
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      RELEASE_TAG: build-${{ github.run_number }}-${{ github.run_attempt }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: campus-helpdesk-build
+          path: dist
+      - name: Package verified build and migration instructions
+        run: tar -czf campus-helpdesk-build.tar.gz dist drizzle docs README.md
+      - name: Publish private repository release
+        run: >-
+          gh release create "$RELEASE_TAG" campus-helpdesk-build.tar.gz
+          --target "$GITHUB_SHA"
+          --title "Campus Helpdesk verified build $GITHUB_RUN_NUMBER"
+          --notes "Automatically delivered after passing API tests, TypeScript, production build and fresh SQL migrations. This private release contains the verified build and schema. See docs/GITHUB_CICD.md for configuring a separate Cloudflare deployment."
   deploy:
     name: Deploy verified main branch
     needs: verify
