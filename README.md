@@ -79,3 +79,5 @@ GitHub Actions automatically verifies changes and delivers a private release aft
 Jira stories are planned review/acceptance work, not a fabricated history of completed team ceremonies. Your team should perform and record real sprint planning, reviews, retrospectives and code reviews. No payments, email delivery, file attachments, password reset or production staff-management UI are included.
 
 Demo data and session databases are deliberately excluded from the downloadable source and Git history. Each fresh local setup starts with a new local database; it does not copy the live database.
+
+#this is testinig line
