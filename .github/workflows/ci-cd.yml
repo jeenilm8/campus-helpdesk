@@ -29,6 +29,8 @@ jobs:
         run: npm test
       - name: Check TypeScript
         run: npm run typecheck
+      - name: Build the Vercel application
+        run: npm run build:vercel
       - name: Build the application
         run: npm run build
       - name: Verify fresh SQL migrations
