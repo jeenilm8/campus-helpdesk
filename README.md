@@ -12,6 +12,7 @@ A complete classroom project for **Agile Methodology and Development**. Students
 - [Agile course guide](docs/AGILE_COURSE_GUIDE.md)
 - [Architecture and API](docs/ARCHITECTURE.md)
 - [GitHub and CI/CD setup](docs/GITHUB_CICD.md)
+- [Vercel deployment](docs/VERCEL_DEPLOYMENT.md)
 - [Five-minute presentation script](docs/DEMO_SCRIPT.md)
 - [Validation results](docs/VALIDATION.md)
 
@@ -66,6 +67,7 @@ The earlier proposal used Express and MySQL. This delivered version uses a Worke
 npm test                 # Automated tests using real isolated SQLite databases
 npm run typecheck        # TypeScript validation
 npm run build            # Production Worker and browser build
+npm run build:vercel     # Next.js build for Vercel, using the existing private API
 npm run db:migrate       # Apply pending local SQL migrations; build first
 npm start               # Preview the built app locally
 ```

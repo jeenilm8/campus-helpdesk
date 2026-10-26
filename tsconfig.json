@@ -23,6 +23,7 @@
       }
     ],
     "paths": {
+      "@helpdesk/runtime": ["./lib/worker-runtime.ts"],
       "@/*": [
         "./*"
       ]
